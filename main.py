@@ -1,7 +1,7 @@
 leftSensor = 1023
 rightSensor = 1023
 centerSensor = 1023
-alongWall = "right"
+alongWall = Math.random_boolean()
 spinDir = BBRobotDirection.LEFT
 bitbot.enable_pid(False)
 
@@ -15,7 +15,7 @@ def on_forever():
     centerSensor = bitbot.read_line_analog(BBPLineSensor.CENTRE)
     # - 40 / 10 input.running_time_micros()
 
-    if alongWall == "right":
+    if alongWall == True:
         spinDir = BBRobotDirection.LEFT
     else:
         spinDir = BBRobotDirection.RIGHT
@@ -29,7 +29,7 @@ def on_forever():
     rightSensor = bitbot.read_line_analog(BBPLineSensor.RIGHT)
     if rightSensor < 50:
         while rightSensor < 50:
-           alongWall = "right"
+           alongWall = Math.random_boolean()
            bitbot.spin_deg(BBRobotDirection.LEFT, 60, 30)
            basic.pause(50)
            rightSensor = bitbot.read_line_analog(BBPLineSensor.RIGHT)
@@ -42,7 +42,7 @@ def on_forever():
     leftSensor = bitbot.read_line_analog(BBPLineSensor.LEFT)
     if leftSensor < 50:
         while leftSensor < 50:
-            alongWall = "left"
+            alongWall = Math.random_boolean()
             bitbot.spin_deg(BBRobotDirection.RIGHT, 60, 30)
             basic.pause(50)
             leftSensor = bitbot.read_line_analog(BBPLineSensor.LEFT)

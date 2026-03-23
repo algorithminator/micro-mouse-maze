@@ -1,7 +1,7 @@
 let leftSensor = 1023
 let rightSensor = 1023
 let centerSensor = 1023
-let alongWall = "right"
+let alongWall = Math.randomBoolean()
 let spinDir = BBRobotDirection.Left
 bitbot.enablePID(false)
 basic.forever(function on_forever() {
@@ -13,7 +13,7 @@ basic.forever(function on_forever() {
     //  - 40 / 10
     centerSensor = bitbot.readLineAnalog(BBPLineSensor.Centre)
     //  - 40 / 10 input.running_time_micros()
-    if (alongWall == "right") {
+    if (alongWall == true) {
         spinDir = BBRobotDirection.Left
     } else {
         spinDir = BBRobotDirection.Right
@@ -27,7 +27,7 @@ basic.forever(function on_forever() {
     rightSensor = bitbot.readLineAnalog(BBPLineSensor.Right)
     if (rightSensor < 50) {
         while (rightSensor < 50) {
-            alongWall = "right"
+            alongWall = Math.randomBoolean()
             bitbot.spinDeg(BBRobotDirection.Left, 60, 30)
             basic.pause(50)
             rightSensor = bitbot.readLineAnalog(BBPLineSensor.Right)
@@ -42,7 +42,7 @@ basic.forever(function on_forever() {
     leftSensor = bitbot.readLineAnalog(BBPLineSensor.Left)
     if (leftSensor < 50) {
         while (leftSensor < 50) {
-            alongWall = "left"
+            alongWall = Math.randomBoolean()
             bitbot.spinDeg(BBRobotDirection.Right, 60, 30)
             basic.pause(50)
             leftSensor = bitbot.readLineAnalog(BBPLineSensor.Left)
